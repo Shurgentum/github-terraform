@@ -36,6 +36,6 @@ variable "delete_branch_on_merge" {
 
 variable "gitignore_template" {
   type        = string
-  default     = "macOS"
+  default     = null
   description = "https://github.com/github/gitignore"
 }

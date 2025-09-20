@@ -39,3 +39,20 @@ variable "gitignore_template" {
   default     = null
   description = "https://github.com/github/gitignore"
 }
+
+variable "branch_protection_enabled" {
+  type    = bool
+  default = false
+}
+variable "branch_protection" {
+  type = object({
+    require_signed_commits  = bool
+    required_linear_history = bool
+    enforce_admins          = bool
+  })
+  default = {
+    require_signed_commits  = false
+    required_linear_history = true
+    enforce_admins          = true
+  }
+}

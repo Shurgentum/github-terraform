@@ -29,11 +29,11 @@ resource "github_branch_default" "main" {
 }
 
 resource "github_branch_protection" "main" {
-  count         = var.visibility == "public" ? 1 : 0
+  count         = var.visibility == "public" && var.branch_protection_enabled ? 1 : 0
   repository_id = github_repository.this.id
   pattern       = data.github_branch.main.branch
 
-  require_signed_commits  = true
-  required_linear_history = true
-  enforce_admins          = true
+  require_signed_commits  = var.branch_protection.require_signed_commits
+  required_linear_history = var.branch_protection.required_linear_history
+  enforce_admins          = var.branch_protection.enforce_admins
 }

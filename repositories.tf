@@ -4,11 +4,21 @@ module "github_terraform" {
   name        = "github-terraform"
   description = "Management of GitHub profile and its contents"
   visibility  = "public"
+
   pr_closing = {
     merge  = true,
     squash = true,
     rebase = false
   }
+
+  branch_protection_enabled = true
+  branch_protection = {
+    require_signed_commits  = true
+    required_linear_history = true
+    enforce_admins          = true
+  }
+
+
   gitignore_template = "Terraform"
 }
 
@@ -23,6 +33,13 @@ module "mac_ansible" {
     merge  = true
     squash = true
     rebase = true
+  }
+
+  branch_protection_enabled = true
+  branch_protection = {
+    require_signed_commits  = true
+    required_linear_history = true
+    enforce_admins          = true
   }
 }
 
